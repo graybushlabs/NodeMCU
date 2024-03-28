@@ -51,7 +51,7 @@ void handleRoot() {
   mainPage += "</head>";
   mainPage += "<body style=\"display: flex; flex-direction: column; align-items: center;\">";
   mainPage +=   "<h1 style=\"font-size: x-large;\">NodeMCU Relay Control</h1>";
-  mainPage +=   "<form method=\"post\" action=\"/relaytoggle\">";
+  mainPage +=   "<form method=\"post\" action=\"/relaytoggle\" target=\"dummyframe\">";
   
   mainPage +=     "<label style=\"font-size: x-large;\"> Toggle Relay";
   mainPage +=       "<input type=\"checkbox\" name=\"relaystate\" disabled";
@@ -62,9 +62,8 @@ void handleRoot() {
   mainPage +=     "<br />";
   mainPage +=     "<input type=\"submit\" />";
   mainPage +=   "</form>";
-  
   //dummy frame to block redirect on form submission
-  //mainPage +=     "<iframe name=\"dummyframe\" id=\"dummyframe\" style=\"display:none;\"></iframe>";
+  mainPage +=     "<iframe name=\"dummyframe\" id=\"dummyframe\" style=\"display:none;\"></iframe>";
   mainPage += "</body>";
   mainPage += "</html>";
 
