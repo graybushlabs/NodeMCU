@@ -2,15 +2,14 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
+#include <secrets.h>
 
 #define NUM_LEDS 1
 #define DATA_PIN 14
 #define CLOCK_PIN 12
 CRGB leds[NUM_LEDS];
 
-const char *ssid = "Frontier9600";
-const char *password = "2331497786";
-const char* host_name = "printer.rgbw";
+const char* host_name = "led-strip.rgbw";
 ESP8266WebServer server(80);
 
 void setup() {
@@ -21,7 +20,7 @@ void setup() {
   Serial.println();
   Serial.print("Configuring access point...");
   WiFi.hostname(host_name);
-  WiFi.begin(ssid, password);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
