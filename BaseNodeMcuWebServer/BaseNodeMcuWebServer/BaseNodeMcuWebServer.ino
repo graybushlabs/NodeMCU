@@ -4,16 +4,19 @@
 #include <secrets.h>
 
 ESP8266WebServer server(80);
+String deviceHostname = "nodemcu";
 
 void setup() {
   Serial.begin(115200);
 
-  //setup relay
-
   //setup wifi
   Serial.println();
   Serial.print("Configuring access point...");
+  // setting hostname has an order of operation or it wont work. dont change the next 3 lines
+  WiFi.mode(WIFI_STA);
+  WiFi.hostname(deviceHostname.c_str());
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  // end hostname setup
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
