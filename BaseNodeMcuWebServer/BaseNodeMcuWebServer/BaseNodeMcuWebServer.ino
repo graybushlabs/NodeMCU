@@ -31,6 +31,7 @@ void setup() {
   server.enableCORS(true);
   server.on ( "/", handleRoot);
   server.on("/healthcheck", healthCheck);
+  server.onNotFound(notFound);
   
   server.begin();
   Serial.println ( "HTTP server started" );
@@ -41,9 +42,17 @@ void loop() {
 void healthCheck() {
   server.send(200, "text", "I'm not a teapot!");
 }
+void notFound() {
+  String page = "<html>";
+  page += "<head><title>NodeMcu - Page not found</title></head>";
+  page += "<body><h1>Page Not Found</h1></body>";
+  page += "</html>"; 
+  server.send(404, "text/html", page);
+}
 void handleRoot() {
   String mainPage = "<html>";
   mainPage += "<head>";
+  mainPage +=   "<title>NodeMCU</title>";
   mainPage +=   "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
   mainPage += "</head>";
   mainPage += "<body style=\"display: flex; flex-direction: column; align-items: center;\">";
