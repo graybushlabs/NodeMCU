@@ -47,7 +47,7 @@ void notFound() {
   page += "<head><title>NodeMcu - Page not found</title></head>";
   page += "<body><h1>Page Not Found</h1></body>";
   page += "</html>"; 
-  server.send(404, page);
+  server.send(404, "text/html", page);
 }
 void handleRoot() {
   String mainPage = "<html>";
